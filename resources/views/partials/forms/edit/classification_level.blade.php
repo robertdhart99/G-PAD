@@ -1,7 +1,11 @@
 <?php
 $array = array(
-    "foo" => "foo",
-    "bar" => "bar",
+    # "dbValue" => "select box string"
+    "topSecret" => "Top Secret",
+    "secret" => "Secret",
+    "confidential" => "Confidential",
+    "controlledUnclassifiedInformation" => "Controlled Unclassified Information",
+    "unclassified" => "Unclassified",
 );
 ?>
 
