@@ -333,7 +333,7 @@ class AssetsController extends Controller
         // Update the asset data
         $asset_tag           =  $request->input('asset_tags');
         $asset->classified_by= $request->input('classified_by');
-        $asset->classificationlevel = $request->input('classificationlevel');
+        $asset->classificationlevel = request('classificationlevel');
         $asset->derived_from = $request->input('derived_from');
         $serial              = $request->input('serials');
         $asset->name         = $request->input('name');
