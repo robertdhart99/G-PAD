@@ -81,18 +81,22 @@ class Asset extends Depreciable
     protected $casts = [
         'model_id'       => 'integer',
         'status_id'      => 'integer',
-        'classification_id'      => 'varchar',
         'company_id'     => 'integer',
         'location_id'    => 'integer',
         'rtd_company_id' => 'integer',
         'supplier_id'    => 'integer',
+        'classified_by'  => 'varchar',
+        'derived_from'   => 'varchar',
+        'classificationlevel'  => 'varchar',
     ];
 
     protected $rules = [
         'name'            => 'max:255|nullable',
+        'classified_by'   => 'max:50|nullable',
+        'derived_from'    => 'max:50|nullable',
         'model_id'        => 'required|integer|exists:models,id',
         'status_id'       => 'required|integer|exists:status_labels,id',
-        'classification_id'=>'varchar',
+        'classificationlevel'=>'max: 50|nullable',
         'company_id'      => 'integer|nullable',
         'warranty_months' => 'numeric|nullable|digits_between:0,240',
         'physical'        => 'numeric|max:1|nullable',
@@ -130,7 +134,9 @@ class Asset extends Depreciable
         'rtd_location_id',
         'serial',
         'status_id',
-        'classification_id',
+        'classified_by',
+        'derived_from',
+        'classificationlevel',
         'supplier_id',
         'warranty_months',
         'requestable',
@@ -644,18 +650,6 @@ class Asset extends Depreciable
     public function assetstatus()
     {
         return $this->belongsTo('\App\Models\Statuslabel', 'status_id');
-    }
-
-    /**
-     * Establishes the asset -> classification level relationship
-     *
-     * @author [M. Williams] 
-     * @since [v1.0]
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
-     */
-    public function assetclassification()
-    {
-        return $this->belongsTo('\App\Models\ClassificationLevel', 'classification_id');
     }
 
     /**

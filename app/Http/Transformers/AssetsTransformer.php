@@ -25,6 +25,9 @@ class AssetsTransformer
             'name' => e($asset->name),
             'asset_tag' => e($asset->asset_tag),
             'serial' => e($asset->serial),
+            'classified_by' => e($asset->classified_by),
+            'derived_from' => e($asset->derived_from),
+            'classificationlevel' => e($asset->classificationlevel),
             'model' => ($asset->model) ? [
                 'id' => (int) $asset->model->id,
                 'name'=> e($asset->model->name)

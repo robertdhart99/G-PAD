@@ -65,7 +65,25 @@ class AssetPresenter extends Presenter
                 "title" => trans('admin/hardware/form.serial'),
                 "visible" => true,
                 "formatter" => "hardwareLinkFormatter"
-            ],  [
+            ], [
+                "field" => "classified_by",
+                "searchable" => false,
+                "sortable" => false,
+                "visible" => true,
+                "title" => trans('admin/hardware/form.classified_by'),
+            ], [
+                "field" => "derived_from",
+                "searchable" => false,
+                "sortable" => false,
+                "visible" => true,
+                "title" => trans('admin/hardware/form.derived_from'),
+            ], [
+                "field" => "classificationlevel",
+                "searchable" => false,
+                "sortable" => false,
+                "visible" => true,
+                "title" => trans('admin/hardware/form.classification_level'),
+            ], [
                 "field" => "model",
                 "searchable" => true,
                 "sortable" => true,

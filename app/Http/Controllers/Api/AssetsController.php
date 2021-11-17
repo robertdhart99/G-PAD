@@ -86,6 +86,9 @@ class AssetsController extends Controller
             'serial',
             'model_number',
             'last_checkout',
+            'classified_by',
+            'derived_from',
+            'classificationlevel',
             'notes',
             'expected_checkin',
             'order_number',
@@ -484,6 +487,9 @@ class AssetsController extends Controller
         $asset->serial                  = $request->get('serial');
         $asset->company_id              = Company::getIdForCurrentUser($request->get('company_id'));
         $asset->model_id                = $request->get('model_id');
+        $asset->classified_by           = $request->get('classified_by');
+        $asset->derived_from            = $request->get('derived_from');
+        $asset->classificationlevel     = $request->get('classificationlevel');
         $asset->order_number            = $request->get('order_number');
         $asset->notes                   = $request->get('notes');
         $asset->asset_tag               = $request->get('asset_tag', Asset::autoincrement_asset());
