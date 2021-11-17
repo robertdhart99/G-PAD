@@ -85,12 +85,18 @@ class Asset extends Depreciable
         'location_id'    => 'integer',
         'rtd_company_id' => 'integer',
         'supplier_id'    => 'integer',
+        'classified_by'  => 'varchar',
+        'derived_from'   => 'varchar',
+        'classificationlevel'  => 'varchar',
     ];
 
     protected $rules = [
         'name'            => 'max:255|nullable',
+        'classified_by'   => 'max:50|nullable',
+        'derived_from'    => 'max:50|nullable',
         'model_id'        => 'required|integer|exists:models,id',
         'status_id'       => 'required|integer|exists:status_labels,id',
+        'classificationlevel'=>'max: 50|nullable',
         'company_id'      => 'integer|nullable',
         'warranty_months' => 'numeric|nullable|digits_between:0,240',
         'physical'        => 'numeric|max:1|nullable',
@@ -128,6 +134,9 @@ class Asset extends Depreciable
         'rtd_location_id',
         'serial',
         'status_id',
+        'classified_by',
+        'derived_from',
+        'classificationlevel',
         'supplier_id',
         'warranty_months',
         'requestable',

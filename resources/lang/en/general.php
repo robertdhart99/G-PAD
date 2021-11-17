@@ -192,6 +192,7 @@
     'select_user'			=> 'Select a User',
     'select_date'			=> 'Select Date (YYYY-MM-DD)',
     'select_statuslabel'	=> 'Select Status',
+    'select_classificationlevel'	=> 'Select a Classification Level',
     'select_company'    	=> 'Select Company',
     'select_asset'    		=> 'Select Asset',
     'settings'				=> 'Settings',

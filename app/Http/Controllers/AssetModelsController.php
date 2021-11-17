@@ -148,6 +148,7 @@ class AssetModelsController extends Controller
         $model->depreciation_id     = $request->input('depreciation_id');
         $model->classified_by     = $request->input('classified_by');
         $model->derived_from     = $request->input('derived_from');
+        $model->classificationlevel     = $request->input('classificationlevel', 0);
         $model->eol                 = $request->input('eol');
         $model->name                = $request->input('name');
         $model->model_number        = $request->input('model_number');

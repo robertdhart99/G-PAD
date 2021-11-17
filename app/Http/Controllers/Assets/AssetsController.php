@@ -131,6 +131,7 @@ class AssetsController extends Controller
             $asset->company_id              = Company::getIdForCurrentUser($request->input('company_id'));
             $asset->classified_by           = $request->input('classified_by');
             $asset->derived_from            = $request->input('derived_from');
+            $asset->classificationlevel     = request('classificationlevel', 0);
             $asset->Declassification_date   = $request->input('declassification_date');
             $asset->model_id                = $request->input('model_id');
             $asset->order_number            = $request->input('order_number');
@@ -333,6 +334,7 @@ class AssetsController extends Controller
         // Update the asset data
         $asset_tag           =  $request->input('asset_tags');
         $asset->classified_by= $request->input('classified_by');
+        $asset->classificationlevel = request('classificationlevel');
         $asset->derived_from = $request->input('derived_from');
         $asset->declassification_date = $request->input('declassification_date');
         $serial              = $request->input('serials');
@@ -556,7 +558,6 @@ class AssetsController extends Controller
 
         return view('hardware/edit')
             ->with('statuslabel_list', Helper::statusLabelList())
-            ->with('statuslabel_types', Helper::statusTypeList())
             ->with('item', $asset);
     }
 
