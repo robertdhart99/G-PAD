@@ -89,6 +89,7 @@ class AssetsController extends Controller
             'classified_by',
             'derived_from',
             'classificationlevel',
+            'declassification_date',
             'notes',
             'expected_checkin',
             'order_number',
@@ -496,6 +497,7 @@ class AssetsController extends Controller
         $asset->classified_by           = $request->get('classified_by');
         $asset->derived_from            = $request->get('derived_from');
         $asset->classificationlevel     = $request->get('classificationlevel');
+        $asset->declassification_date   = $request->get('declassificationl_date');
         $asset->order_number            = $request->get('order_number');
         $asset->notes                   = $request->get('notes');
         $asset->asset_tag               = $request->get('asset_tag', Asset::autoincrement_asset());

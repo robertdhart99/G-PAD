@@ -83,6 +83,12 @@ class AssetPresenter extends Presenter
                 "sortable" => false,
                 "visible" => true,
                 "title" => trans('admin/hardware/form.classification_level'),
+            ],[
+                "field" => "declassification_date",
+                "searchable" => false,
+                "sortable" => false,
+                "visible" => true,
+                "title" => trans('admin/hardware/form.declassification_date'),
             ], [
                 "field" => "model",
                 "searchable" => true,

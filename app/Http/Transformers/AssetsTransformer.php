@@ -28,6 +28,7 @@ class AssetsTransformer
             'classified_by' => e($asset->classified_by),
             'derived_from' => e($asset->derived_from),
             'classificationlevel' => e($asset->classificationlevel),
+            'declassification_date' => e($asset->declassification_date),
             'model' => ($asset->model) ? [
                 'id' => (int) $asset->model->id,
                 'name'=> e($asset->model->name)

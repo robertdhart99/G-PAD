@@ -43,5 +43,6 @@ return array(
     'years'				=> 'years',
     'classified_by'				=> 'Classified By',
     'derived_from'				=> 'Derived From',
+    'declassification_date'  => 'Declassification Date',
 )
 ;
