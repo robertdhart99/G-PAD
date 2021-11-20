@@ -18,6 +18,7 @@ class UpdateAssetsTable extends Migration
             $table->string('classified_by')->nullable();
             $table->string('derived_from')->nullable();
             $table->string('classificationlevel')->nullable();
+            $table->date('declassification_date');
         });
     }
 
@@ -30,7 +31,7 @@ class UpdateAssetsTable extends Migration
     {
         //Update the assets table
         Schema::table('assets', function ($table) {
-            $table->dropColumn('classified_by', 'derived_from', 'classificationlevel');
+            $table->dropColumn('classified_by', 'derived_from', 'classificationlevel', 'declassification_date');
         });
     }
 }
