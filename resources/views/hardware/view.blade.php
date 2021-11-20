@@ -304,6 +304,18 @@
                                         </div>
                                     @endif
 
+                                    @if ($asset->declassification_date)
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <strong>
+                                                    {{ trans('admin/hardware/form.declassification_date') }}
+                                                </strong>
+                                            </div>
+                                            <div class="col-md-6">
+                                                {{ \App\Helpers\Helper::getFormattedDateObject($asset->declassification_date, 'date', false) }}
+                                            </div>
+                                        </div>
+                                    @endif
 
                                     @if ((isset($audit_log)) && ($audit_log->created_at))
                                         <div class="row">
