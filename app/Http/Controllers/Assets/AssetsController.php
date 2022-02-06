@@ -132,7 +132,7 @@ class AssetsController extends Controller
             $asset->classified_by           = $request->input('classified_by');
             $asset->derived_from            = $request->input('derived_from');
             $asset->classificationlevel     = request('classificationlevel', 0);
-            $asset->Declassification_date   = $request->input('declassification_date');
+            $asset->declassification_date   = request('declassification_date', null);
             $asset->model_id                = $request->input('model_id');
             $asset->order_number            = $request->input('order_number');
             $asset->notes                   = $request->input('notes');
@@ -336,7 +336,7 @@ class AssetsController extends Controller
         $asset->classified_by= $request->input('classified_by');
         $asset->classificationlevel = request('classificationlevel');
         $asset->derived_from = $request->input('derived_from');
-        $asset->declassification_date = $request->input('declassification_date');
+        $asset->declassification_date = $request->input('declassification_date', null);
         $serial              = $request->input('serials');
         $asset->name         = $request->input('name');
         $asset->serial       = $serial[1];
@@ -860,5 +860,21 @@ class AssetsController extends Controller
 
         return view('hardware/requested', compact('requestedItems'));
     }
-
+  
+    public function upload(Request $request)
+    {
+        $folderPath = public_path('upload/');
+        
+        $image_parts = explode(";base64,", $request->signed);
+              
+        $image_type_aux = explode("image/", $image_parts[0]);
+           
+        $image_type = $image_type_aux[1];
+           
+        $image_base64 = base64_decode($image_parts[1]);
+           
+        $file = $folderPath . uniqid() . '.'.$image_type;
+        file_put_contents($file, $image_base64);
+        return back()->with('success', 'success Full upload signature');
+    }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;  
+use App\Http\Controllers\SignaturePadController;
 
 Route::group(['middleware' => 'auth'], function () {
     /*
@@ -469,3 +471,5 @@ Route::group(['middleware' => 'web'], function () {
 Auth::routes();
 
 Route::get('/health', [ 'as' => 'health', 'uses' => 'HealthController@get']);
+
+Route::post('signaturepad', [SignaturePadController::class, 'upload'])->name('signaturepad.upload');
