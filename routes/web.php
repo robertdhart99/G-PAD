@@ -472,4 +472,5 @@ Auth::routes();
 
 Route::get('/health', [ 'as' => 'health', 'uses' => 'HealthController@get']);
 
-Route::post('signaturepad', [SignaturePadController::class, 'upload'])->name('signaturepad.upload');
+Route::get('laravel-signature-pad','SignatureController@index');
+Route::post('laravel-signature-pad','SignatureController@store');
