@@ -12,6 +12,7 @@ use App\Models\Company;
 use App\Models\Location;
 use App\Models\Setting;
 use App\Models\User;
+use App\Signature;
 use Auth;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
@@ -185,6 +186,27 @@ class AssetsController extends Controller
                 }
             }
 
+            //Store signature
+            $folderPath = public_path('uploads/');
+       
+            $image_parts = explode(";base64,", $request->signed);
+                
+            $image_type_aux = explode("image/", $image_parts[0]);
+            
+            $image_type = isset($image_type_aux[1]) ? $image_type_aux[1] : null;
+            
+            $image_base64 = base64_decode(isset($image_parts[1]) ? $image_type_aux[1] : null);
+    
+            $signature = uniqid() . '.'.$image_type;
+            
+            $file = $folderPath . $signature;
+    
+            file_put_contents($file, $image_base64);
+
+            $asset->signature_path = $signature;
+
+            $asset->save();
+
             // Validate the asset before saving
             if ($asset->isValid() && $asset->save()) {
 
@@ -304,6 +326,7 @@ class AssetsController extends Controller
         }
         $this->authorize($asset);
 
+        $var = Signature::all();
         $asset->status_id = $request->input('status_id', null);
         $asset->warranty_months = $request->input('warranty_months', null);
         $asset->purchase_cost = Helper::ParseCurrency($request->input('purchase_cost', null));
@@ -348,6 +371,8 @@ class AssetsController extends Controller
         $asset->physical     = '1';
 
         $asset = $request->handleImages($asset);
+
+        $asset->signature    = $request->input('signature_path');
 
         // Update custom fields in the database.
         // Validation for these fields is handlded through the AssetRequest form request

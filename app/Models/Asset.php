@@ -142,6 +142,7 @@ class Asset extends Depreciable
         'requestable',
         'last_checkout',
         'expected_checkin',
+        'signature_path',
     ];
 
     use Searchable;

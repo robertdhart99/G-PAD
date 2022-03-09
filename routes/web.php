@@ -474,3 +474,16 @@ Route::get('/health', [ 'as' => 'health', 'uses' => 'HealthController@get']);
 
 Route::get('laravel-signature-pad','SignatureController@index');
 Route::post('laravel-signature-pad','SignatureController@store');
+Route::get('/public/uploads/{signature}', function ($signature)
+{
+    $path = storage_path() . '/public/uploads/' . $signature;
+
+    if(!File::exists($path)) abort(404);
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+    return $response;
+})->name('getSignature');

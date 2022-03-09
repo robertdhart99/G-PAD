@@ -71,8 +71,8 @@ class AssetModelsController extends Controller
         $model = new AssetModel;
 
         // Save the model data
-        $model->eol = $request->input('eol');
-        $model->depreciation_id = $request->input('depreciation_id');
+        $model->eol                 = $request->input('eol');
+        $model->depreciation_id     = $request->input('depreciation_id');
         $model->name                = $request->input('name');
         $model->model_number        = $request->input('model_number');
         $model->manufacturer_id     = $request->input('manufacturer_id');

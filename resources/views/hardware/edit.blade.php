@@ -1,4 +1,3 @@
-
 @extends('layouts/edit-form', [
     'createText' => trans('admin/hardware/form.create'),
     'updateText' => trans('admin/hardware/form.update'),
@@ -52,6 +51,14 @@
 
     @include ('partials.forms.edit.classification_level', ['translated_name' => trans('admin/hardware/form.classification_level'), 'required' => 'true'])
     @include ('partials.forms.edit.declassification_date')
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success  alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">×</button>  
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
     @include ('partials.forms.edit.signature-pad-button')
     @include ('partials.forms.edit.model-select', ['translated_name' => trans('admin/hardware/form.model'), 'fieldname' => 'model_id', 'field_req' => true])
 

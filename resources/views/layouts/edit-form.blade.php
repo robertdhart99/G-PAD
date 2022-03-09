@@ -26,7 +26,7 @@
     <!-- col-md-8 -->
     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12 col-sm-offset-0">
 
-        <form id="create-form" class="form-horizontal" method="post" action="{{ (isset($formAction)) ? $formAction : \Request::url()  }}" autocomplete="off" role="form" enctype="multipart/form-data">
+        <form id="create-form" class="form-horizontal" method="post" action="{{ (isset($formAction)) ? $formAction : \Request::url() }}" autocomplete="off" role="form" enctype="multipart/form-data">
 
         <!-- box -->
         <div class="box box-default">
