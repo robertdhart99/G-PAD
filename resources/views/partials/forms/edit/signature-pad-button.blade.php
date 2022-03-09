@@ -19,7 +19,7 @@
             </label>
             {!! $errors->first('image', '<span class="alert-msg" aria-hidden="true">:message</span>') !!}
         @else
-            <img src="/uploads/{$item->signature_path}" /><!-- debug -->
+            <img src="/uploads/{{$item->signature_path}}"/>
         @endif
 
         
