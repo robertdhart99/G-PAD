@@ -188,24 +188,13 @@ class AssetsController extends Controller
 
             //Store signature
             $folderPath = public_path('uploads/');
-       
-            $image_parts = explode(";base64,", $request->signed);
-                
-            $image_type_aux = explode("image/", $image_parts[0]);
+            $image = $request->signed;
+            $image = str_replace('data:image/png;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $imageName = str_random(10).'.'.'png';
+            $asset->signature_path = $imageName;
+            \File::put($folderPath . '/' . $imageName, base64_decode($image));
             
-            $image_type = isset($image_type_aux[1]) ? $image_type_aux[1] : null;
-            
-            $image_base64 = base64_decode(isset($image_parts[1]) ? $image_type_aux[1] : null);
-    
-            $signature = uniqid() . '.'.$image_type;
-            
-            $file = $folderPath . $signature;
-    
-            file_put_contents($file, $image_base64);
-
-            $asset->signature_path = $signature;
-
-            $asset->save();
 
             // Validate the asset before saving
             if ($asset->isValid() && $asset->save()) {
