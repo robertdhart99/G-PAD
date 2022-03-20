@@ -10,7 +10,7 @@
 <body>
 
 <div class="form-group {{ $errors->has((isset($fieldname) ? $fieldname : 'image')) ? 'has-error' : '' }}">
-    <label class="col-md-3 control-label" for="image">{{ "Destruction Official Signature" }}</label>
+    <label class="col-md-3 control-label" >{{ "Destruction Official Signature" }}</label>
     <div class="col-md-9">
         
         @if($item->signature_path == '')
