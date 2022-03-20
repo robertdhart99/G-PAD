@@ -10,7 +10,7 @@
 <body>
 
 <div class="form-group {{ $errors->has((isset($fieldname) ? $fieldname : 'image')) ? 'has-error' : '' }}">
-    <label class="col-md-3 control-label" for="image">{{ "Destruction Signature" }}</label>
+    <label class="col-md-3 control-label" for="image">{{ "Destruction Official Signature" }}</label>
     <div class="col-md-9">
         
         @if($item->signature_path == '')
@@ -34,7 +34,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">TO FILL IN???</h4>
+                <h4 class="modal-title">Destruction Official Signature</h4>
             </div>
             <div class="modal-body">
                 <head>
@@ -59,7 +59,7 @@
                     <div class="col-md-6 offset-md-3 mt-5">
                         <div class="card">
                             <div class="card-header">
-                                <h5>You're a witness by signing this!</h5>
+                                <h5>I certify the item was destroyed in accordance with applicable security policies and procedures.</h5>
                             </div>
                             <div class="card-body">
                                     
