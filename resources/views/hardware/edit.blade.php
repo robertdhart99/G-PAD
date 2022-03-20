@@ -59,7 +59,6 @@
         </div>
     @endif
 
-    @include ('partials.forms.edit.signature-pad-button')
     @include ('partials.forms.edit.model-select', ['translated_name' => trans('admin/hardware/form.model'), 'fieldname' => 'model_id', 'field_req' => true])
 
 
@@ -79,6 +78,7 @@
   </div>
 
   @include ('partials.forms.edit.status', [ 'required' => 'true'])
+  @include ('partials.forms.edit.signature-pad-button')
   @if (!$item->id)
       @include ('partials.forms.checkout-selector', ['user_select' => 'true','asset_select' => 'true', 'location_select' => 'true', 'style' => 'display:none;'])
       @include ('partials.forms.edit.user-select', ['translated_name' => trans('admin/hardware/form.checkout_to'), 'fieldname' => 'assigned_user', 'style' => 'display:none;', 'required' => 'false'])
