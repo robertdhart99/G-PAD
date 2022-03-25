@@ -1,4 +1,3 @@
-
 @extends('layouts/edit-form', [
     'createText' => trans('admin/hardware/form.create'),
     'updateText' => trans('admin/hardware/form.update'),
@@ -50,8 +49,19 @@
 
     @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
 
+
     @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
-    @include ('partials.forms.edit.declassification_date', ['translated_name' => trans('admin/hardware/form.declassification_date'),'fieldname' => 'declassification_date'])
+    @include ('partials.forms.edit.classification_level', ['translated_name' => trans('admin/hardware/form.classification_level'), 'required' => 'true'])
+    @include ('partials.forms.edit.declassification_date')
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success  alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">×</button>  
+            <strong>{{ $message }}</strong>
+        </div>
+    @endif
+
+
     @include ('partials.forms.edit.model-select', ['translated_name' => trans('admin/hardware/form.model'), 'fieldname' => 'model_id', 'field_req' => true])
 
 
@@ -71,6 +81,7 @@
   </div>
 
   @include ('partials.forms.edit.status', [ 'required' => 'true'])
+  @include ('partials.forms.edit.signature-pad-button')
   @if (!$item->id)
       @include ('partials.forms.checkout-selector', ['user_select' => 'true','asset_select' => 'true', 'location_select' => 'true', 'style' => 'display:none;'])
       @include ('partials.forms.edit.user-select', ['translated_name' => trans('admin/hardware/form.checkout_to'), 'fieldname' => 'assigned_user', 'style' => 'display:none;', 'required' => 'false'])

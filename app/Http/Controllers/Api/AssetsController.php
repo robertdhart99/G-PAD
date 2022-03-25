@@ -86,6 +86,10 @@ class AssetsController extends Controller
             'serial',
             'model_number',
             'last_checkout',
+            'classified_by',
+            'derived_from',
+            'classificationlevel',
+            'declassification_date',
             'notes',
             'expected_checkin',
             'order_number',
@@ -490,6 +494,10 @@ class AssetsController extends Controller
         $asset->serial                  = $request->get('serial');
         $asset->company_id              = Company::getIdForCurrentUser($request->get('company_id'));
         $asset->model_id                = $request->get('model_id');
+        $asset->classified_by           = $request->get('classified_by');
+        $asset->derived_from            = $request->get('derived_from');
+        $asset->classificationlevel     = $request->get('classificationlevel');
+        $asset->declassification_date   = $request->get('declassificationl_date');
         $asset->order_number            = $request->get('order_number');
         $asset->notes                   = $request->get('notes');
         $asset->asset_tag               = $request->get('asset_tag', Asset::autoincrement_asset());
@@ -910,7 +918,7 @@ class AssetsController extends Controller
             }
         }
 
-        return response()->json(Helper::formatStandardApiResponse('error', ['asset_tag'=> e($request->input('asset_tag'))], 'Asset with tag '.e($request->input('asset_tag')).' not found'));
+        return response()->json(Helper::formatStandardApiResponse('error', ['asset_tag'=> e($request->input('asset_tag'))], 'Asset with tag '.$request->input('asset_tag').' not found'));
 
 
 

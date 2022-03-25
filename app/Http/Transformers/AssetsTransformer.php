@@ -25,6 +25,10 @@ class AssetsTransformer
             'name' => e($asset->name),
             'asset_tag' => e($asset->asset_tag),
             'serial' => e($asset->serial),
+            'classified_by' => e($asset->classified_by),
+            'derived_from' => e($asset->derived_from),
+            'classificationlevel' => e($asset->classificationlevel),
+            'declassification_date' => e($asset->declassification_date),
             'model' => ($asset->model) ? [
                 'id' => (int) $asset->model->id,
                 'name'=> e($asset->model->name)
@@ -93,15 +97,15 @@ class AssetsTransformer
                     $value = (Gate::allows('superadmin')) ? $decrypted : strtoupper(trans('admin/custom_fields/general.encrypted'));
 
                     $fields_array[$field->name] = [
-                            'field' => $field->convertUnicodeDbSlug(),
-                            'value' => $value,
+                            'field' => e($field->convertUnicodeDbSlug()),
+                            'value' => e($value),
                             'field_format' => $field->format,
                         ];
 
                 } else {
                     $fields_array[$field->name] = [
-                        'field' => $field->convertUnicodeDbSlug(),
-                        'value' => $asset->{$field->convertUnicodeDbSlug()},
+                        'field' => e($field->convertUnicodeDbSlug()),
+                        'value' => e($asset->{$field->convertUnicodeDbSlug()}),
                         'field_format' => $field->format,
                     ];
 
@@ -134,7 +138,7 @@ class AssetsTransformer
                         
                             'id' => $component->id,
                             'pivot_id' => $component->pivot->id,
-                            'name' => $component->name,
+                            'name' => e($component->name),
                             'qty' => $component->pivot->assigned_qty,
                             'price_cost' => $component->purchase_cost,
                             'purchase_total' => $component->purchase_cost * $component->pivot->assigned_qty,

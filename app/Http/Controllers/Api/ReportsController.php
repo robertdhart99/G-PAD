@@ -62,6 +62,5 @@ class ReportsController extends Controller
         $actionlogs = $actionlogs->orderBy($sort, $order)->skip($offset)->take($limit)->get();
 
         return response()->json((new ActionlogsTransformer)->transformActionlogs($actionlogs, $total), 200, ['Content-Type' => 'application/json;charset=utf8'], JSON_UNESCAPED_UNICODE);
-
     }
 }

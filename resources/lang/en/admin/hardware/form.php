@@ -11,6 +11,7 @@ return array(
     'checkout_date'		=> 'Checkout Date',
     'checkin_date'		=> 'Checkin Date',
     'checkout_to'		=> 'Checkout to',
+    'classification_level'  => 'Classification Level',
     'cost'				=> 'Purchase Cost',
     'create'			=> 'Create Asset',
     'date'				=> 'Purchase Date',
@@ -42,5 +43,6 @@ return array(
     'years'				=> 'years',
     'classified_by'				=> 'Classified By',
     'derived_from'				=> 'Derived From',
+    'declassification_date'  => 'Declassification Date',
 )
 ;
