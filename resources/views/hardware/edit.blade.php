@@ -49,6 +49,8 @@
 
     @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
 
+
+    @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
     @include ('partials.forms.edit.classification_level', ['translated_name' => trans('admin/hardware/form.classification_level'), 'required' => 'true'])
     @include ('partials.forms.edit.declassification_date')
 
@@ -58,6 +60,7 @@
             <strong>{{ $message }}</strong>
         </div>
     @endif
+
 
     @include ('partials.forms.edit.model-select', ['translated_name' => trans('admin/hardware/form.model'), 'fieldname' => 'model_id', 'field_req' => true])
 

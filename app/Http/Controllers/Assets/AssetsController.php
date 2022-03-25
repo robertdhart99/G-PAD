@@ -132,6 +132,7 @@ class AssetsController extends Controller
             $asset->company_id              = Company::getIdForCurrentUser($request->input('company_id'));
             $asset->classified_by           = $request->input('classified_by');
             $asset->derived_from            = $request->input('derived_from');
+            $asset->Holder                  = $request->input('holder');
             $asset->classificationlevel     = request('classificationlevel', 0);
             $asset->declassification_date   = request('declassification_date', null);
             $asset->model_id                = $request->input('model_id');
@@ -348,6 +349,7 @@ class AssetsController extends Controller
         $asset->classified_by= $request->input('classified_by');
         $asset->classificationlevel = request('classificationlevel');
         $asset->derived_from = $request->input('derived_from');
+        $asset->holder = $request->input('holder');
         $asset->declassification_date = $request->input('declassification_date', null);
         $serial              = $request->input('serials');
         $asset->name         = $request->input('name');
