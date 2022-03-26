@@ -40,17 +40,24 @@
           </div>
       @endif
   </div>
+
+    @include ('partials.forms.edit.name', ['translated_name' => trans('admin/hardware/form.name')])
     @include ('partials.forms.edit.serial', ['fieldname'=> 'serials[1]', 'translated_serial' => trans('admin/hardware/form.serial')])
 
     <div class="input_fields_wrap">
     </div>
 
-	@include ('partials.forms.edit.classified_by', ['translated_name' => trans('admin/hardware/form.classified_by')])
-
-    @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
-
     @include ('partials.forms.edit.classification_level', ['translated_name' => trans('admin/hardware/form.classification_level'), 'required' => 'true'])
+	@include ('partials.forms.edit.classified_by', ['translated_name' => trans('admin/hardware/form.classified_by')])
+    @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
     @include ('partials.forms.edit.declassification_date')
+    
+   <!-- Remove Test
+       
+    ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
+
+    -->
+    
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success  alert-dismissible">
@@ -58,6 +65,7 @@
             <strong>{{ $message }}</strong>
         </div>
     @endif
+
 
     @include ('partials.forms.edit.model-select', ['translated_name' => trans('admin/hardware/form.model'), 'fieldname' => 'model_id', 'field_req' => true])
 
@@ -93,7 +101,6 @@
       @include ('partials.forms.edit.datepicker', ['translated_name' => trans('admin/hardware/form.expected_checkin'),'fieldname' => 'expected_checkin'])
   @endif
 
-  @include ('partials.forms.edit.name', ['translated_name' => trans('admin/hardware/form.name')])
   @include ('partials.forms.edit.purchase_date')
   @include ('partials.forms.edit.supplier-select', ['translated_name' => trans('general.supplier'), 'fieldname' => 'supplier_id'])
   @include ('partials.forms.edit.order_number')
