@@ -52,12 +52,7 @@
     @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
     @include ('partials.forms.edit.declassification_date')
     
-   <!-- Remove Test
-       
-    ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
-
-    -->
-    
+   @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder'])
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success  alert-dismissible">
