@@ -67,9 +67,9 @@
         @if (($snipeSettings) && ($snipeSettings->privacy_policy_link!=''))
         <a target="_blank" rel="noopener" href="{{  $snipeSettings->privacy_policy_link }}" target="_new">{{ trans('admin/settings/general.privacy_policy') }}</a>
     @endif
-    <p><strong>Standard Mandatory DoD Notice and Consent</strong>
-    <br>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USGauthorized use only.<br/>
-    <br>By using this IS (which includes any device attached to this IS), you consent to the following conditions:<br/>
+    <p><strong>Standard Mandatory DoD Notice and Consent</strong><br>
+    You are accessing a U.S. Government (USG) Information System (IS) that is provided for USGauthorized use only.
+    By using this IS (which includes any device attached to this IS), you consent to the following conditions:
     <ul>
         <li>The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.  </li>
         <li>At any time, the USG may inspect and seize data stored on this IS.</li>
