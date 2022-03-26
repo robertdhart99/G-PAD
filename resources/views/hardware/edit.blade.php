@@ -54,7 +54,7 @@
     
    <!-- Remove Test
        
-    ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
+   @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
 
     -->
     
