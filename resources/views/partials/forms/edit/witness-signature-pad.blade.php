@@ -53,7 +53,7 @@
 	                        border: 1px solid #a0a0a0;
 	                        -ms-touch-action: none;
                         }
-                        #witnessPads canvas{
+                        #witnessPad canvas{
                         width: 500px !important;
                         height: 180px;
                         }
@@ -77,8 +77,8 @@
                                             <div id="witnessPad" ></div>
                                             
                                             <br/>
-                                            <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                                            <textarea id="witness64" name="sigs[]" style="display: none" multiple></textarea>
+                                            <button id="witClear" class="btn btn-danger btn-sm">Clear Signature</button>
+                                            <textarea id="witness64" name="witness_signature_path" style="display: none" multiple></textarea>
                                         </div> 
                                         <br/>
                                     </form>
@@ -91,7 +91,7 @@
                     var witnessPad = $('#witnessPad').signature({syncField: '#witness64', syncFormat: 'PNG'});
                     $('#clear').click(function(e) {
                         e.preventDefault();
-                        wit.signature('clear');
+                        witnessPad.signature('clear');
                         $("#witness64").val('');
                     });
 

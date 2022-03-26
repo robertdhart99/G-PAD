@@ -96,39 +96,18 @@ class AssetsController extends Controller
 
     public function saveSigAsPNG($name, $dbField, ImageUploadRequest $request, $asset) {
         $folderPath = public_path('uploads/');
-
-        /*$sig = $request->$name;
-        $sig = str_replace('data:image/png;base64,', '', $sig);
-        $sig = str_replace(' ', '+', $sig);
-        $imageName = str_random(10).'.'.'png';
-        $asset->$dbField = $imageName;
-        File::put($folderPath . '/' . $imageName, base64_decode($sig));*/
-
+            
+        //witness signature save
         $image_parts = explode(";base64,", $request->$name);
+            
         $image_type_aux = explode("image/", $image_parts[0]);
-        if ( ! isset($image_type_aux[1])) {
-            $image_type_aux[1] = null;
-        }
+        
         $image_type = $image_type_aux[1];
-        if ( ! isset($image_parts[1])) {
-            $image_parts[1] = null;
-        }
+        
         $image_base64 = base64_decode($image_parts[1]);
-        $signature = uniqid() . '.'.$image_type;
-        $file = $folderPath . $signature;
-        $asset->$dbField = $signature;
-
-        //dd($name);
-
-        if($name == "witness") {
-            //dd($signature);
-            dd($image_parts);
-            //dd($image_type_aux);
-            //dd($image_parts[0]);
-            //dd($file);
-            //dd($name);
-        }
-
+        
+        $file = $folderPath . uniqid() . '.'.$image_type;
+        $asset->$dbField = $file;
         file_put_contents($file, $image_base64);
     }
 
@@ -171,7 +150,7 @@ class AssetsController extends Controller
             $asset->company_id              = Company::getIdForCurrentUser($request->input('company_id'));
             $asset->classified_by           = $request->input('classified_by');
             $asset->derived_from            = $request->input('derived_from');
-            $asset->Holder                  = $request->input('holder');
+            //$asset->Holder                  = $request->input('holder');
             $asset->classificationlevel     = request('classificationlevel', 0);
             $asset->declassification_date   = request('declassification_date', null);
             $asset->model_id                = $request->input('model_id');
@@ -190,12 +169,60 @@ class AssetsController extends Controller
             $asset->requestable             = request('requestable', 0);
             $asset->rtd_location_id         = request('rtd_location_id', null);
 
+            //$this->saveSigAsPNG($request->witness_signature_path, 'witness_signature_path',$request, $asset);
+
+            $folderPath = public_path('uploads/');
+            
+            //witness signature save
+            $image_parts_wit = explode(";base64,", $request->witness_signature_path);
+                
+            $image_type_aux_wit = explode("image/", $image_parts_wit[0]);
+            
+            $image_type_wit = $image_type_aux_wit[1];
+            
+            $image_base64_wit = base64_decode($image_parts_wit[1]);
+            
+            $file_wit = $folderPath . uniqid() . '.'.$image_type_wit;
+            $image_name = explode("/", $file_wit);
+            $asset->witness_signature_path = $image_name[count($image_name) - 1];
+            file_put_contents($file_wit, $image_base64_wit);
+
+            $image_parts_wit = explode(";base64,", $request->signature_path);
+                
+            $image_type_aux_wit = explode("image/", $image_parts_wit[0]);
+            
+            $image_type_wit = $image_type_aux_wit[1];
+            
+            $image_base64_wit = base64_decode($image_parts_wit[1]);
+            
+            $file_wit = $folderPath . uniqid() . '.'.$image_type_wit;
+            $image_name = explode("/", $file_wit);
+            $asset->signature_path = $image_name[count($image_name) - 1];;
+            file_put_contents($file_wit, $image_base64_wit);
+
+            //official signature save
+            /*$image_parts_off = explode(";base64,", $request->signature_path);
+                
+            $image_type_aux_off = explode("image/", $image_parts_off[0]);
+            
+            if( ! isset($image_type_aux_off[1])) {
+                $image_type_aux_off[1] = null;
+            }
+            $image_type_off = $image_type_aux_off[1];
+            
+            $image_base64_off = base64_decode($image_parts_off[1]);
+            
+            $file_off = $folderPath . uniqid() . '.'.$image_type_off;
+            $asset->witness_signature_path = request('signature_path', 0);
+            file_put_contents($file_off, $image_base64_off);*/
+
+
             //data = $_POST['dataURL'];
 
-            $image = Image::make("/var/www/html/G-PAD/public/uploads/" . $request->get('imgBase64'));
-            dd(storage_path('app/' . $request->get('imgBase64')));
+            //$image = Image::make("/var/www/html/G-PAD/public/uploads/" . $request->get('imgBase64'));
+            //dd(storage_path('app/' . $request->get('imgBase64')));
             //$request->get('imgBase64')
-            $folderPath = public_path('uploads/');
+            /*$folderPath = public_path('uploads/');
             
             $image_parts = explode(";base64,", $image);
             $image_type_aux = explode("image/", $image_parts[0]);
@@ -222,7 +249,7 @@ class AssetsController extends Controller
                 //dd($name);
             }*/
 
-            file_put_contents($file, $image_base64);
+            //file_put_contents($file, $image_base64);
             
             
             /////

@@ -162,7 +162,7 @@
                                     
                                         <br/>
                                         <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                                        <textarea id="signature64" name="signatures[]" style="display: none" multiple>546456</textarea>
+                                        <textarea id="signature64" name="signature_path" style="display: none" multiple>546456</textarea>
                                     </div>
                                     <br/>
                                 </input>
