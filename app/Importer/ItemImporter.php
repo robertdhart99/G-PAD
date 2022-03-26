@@ -28,6 +28,10 @@ class ItemImporter extends Importer
         if ($this->shouldUpdateField($item_category)) {
             $this->item["category_id"] = $this->createOrFetchCategory($item_category);
         }
+        $item_signatures = $this->findCsvMatch($row, "signatures");
+        if ($this->shouldUpdateField($item_signatures)) {
+            $this->item["signatures"] = $this->createOrFetchCategory($item_signatures);
+        }
 
         $item_company_name = $this->findCsvMatch($row, "company");
         if ($this->shouldUpdateField($item_company_name)) {

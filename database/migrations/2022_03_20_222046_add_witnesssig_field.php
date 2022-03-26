@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateAssetsTable extends Migration
+class AddWitnesssigField extends Migration
 {
     /**
      * Run the migrations.
@@ -15,12 +15,7 @@ class UpdateAssetsTable extends Migration
     {
         //Update the assets table
         Schema::table('assets', function ($table) {
-            $table->string('classified_by')->nullable();
-            $table->string('derived_from')->nullable();
-            $table->string('classificationlevel')->nullable();
-            $table->string('declassification_date');
-            $table->string('signature_path');
-            $table->json('signatures');
+            $table->string('witness_signature_path');
         });
     }
 
@@ -33,7 +28,7 @@ class UpdateAssetsTable extends Migration
     {
         //Update the assets table
         Schema::table('assets', function ($table) {
-            $table->dropColumn('classified_by', 'derived_from', 'classificationlevel', 'declassification_date', 'signatures', 'signature_path');
+            $table->dropColumn('witness_signature_path');
         });
     }
 }
