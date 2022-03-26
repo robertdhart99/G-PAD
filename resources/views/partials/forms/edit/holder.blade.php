@@ -13,7 +13,7 @@
             <label for ="val2"> Value 2</label><br>
             <input type="checkbox" id="val3" name="val3" value="val3">
             <label for ="val3"> Value 3</label><br>
-            <input type="checkbox" class="form-control" placeholder="{{ trans('general.string') }}" name="holder" id="va1" value="aa">
+            <!--<input type="checkbox" class="form-control" placeholder="{{ trans('general.string') }}" name="holder" id="va1" value="aa">-->
             <!--<span class="input-group-addon"><i class="fa fa-calendar" aria-hidden="true"></i></span>-->
 
         </div>
