@@ -189,9 +189,14 @@ class AssetsController extends Controller
             $asset->supplier_id             = request('supplier_id', 0);
             $asset->requestable             = request('requestable', 0);
             $asset->rtd_location_id         = request('rtd_location_id', null);
+            $asset->CNWDI                   = request('CNWDI', null);
+            $asset->NATO                    = request('NATO', null);
+            $asset->OTHER                   = request('Other', null);
 
             //data = $_POST['dataURL'];
 
+            /*
+            
             $image = Image::make("/var/www/html/G-PAD/public/uploads/" . $request->get('imgBase64'));
             dd(storage_path('app/' . $request->get('imgBase64')));
             //$request->get('imgBase64')
@@ -210,6 +215,8 @@ class AssetsController extends Controller
             $signature = uniqid() . '.'.$image_type;
             $file = $folderPath . $signature;
             $asset->signature_path = $signature;
+            
+            */
 
             //dd($name);
 
@@ -222,7 +229,7 @@ class AssetsController extends Controller
                 //dd($name);
             }*/
 
-            file_put_contents($file, $image_base64);
+            //file_put_contents($file, $image_base64);
             
             
             /////
