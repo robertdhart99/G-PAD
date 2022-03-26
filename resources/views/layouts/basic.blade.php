@@ -68,6 +68,7 @@
         <a target="_blank" rel="noopener" href="{{  $snipeSettings->privacy_policy_link }}" target="_new">{{ trans('admin/settings/general.privacy_policy') }}</a>
     @endif
     <p><strong>Standard Mandatory DoD Notice and Consent</strong>
+    <br>
     <br>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USGauthorized use only.
     <br>By using this IS (which includes any device attached to this IS), you consent to the following conditions:
     <ul>
