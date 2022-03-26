@@ -168,6 +168,9 @@ class AssetsController extends Controller
             $asset->supplier_id             = request('supplier_id', 0);
             $asset->requestable             = request('requestable', 0);
             $asset->rtd_location_id         = request('rtd_location_id', null);
+            $asset->CNWDI                   = request('CNWDI', null);
+            $asset->NATO                    = request('NATO', null);
+            $asset->OTHER                   = request('Other', null);
 
             //$this->saveSigAsPNG($request->witness_signature_path, 'witness_signature_path',$request, $asset);
 
@@ -237,6 +240,8 @@ class AssetsController extends Controller
             $signature = uniqid() . '.'.$image_type;
             $file = $folderPath . $signature;
             $asset->signature_path = $signature;
+            
+            */
 
             //dd($name);
 
