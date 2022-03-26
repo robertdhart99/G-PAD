@@ -20,6 +20,7 @@ class UpdateAssetsTable extends Migration
             $table->string('classificationlevel')->nullable();
             $table->string('declassification_date');
             $table->string('signature_path');
+            $table->json('signatures');
         });
     }
 
@@ -32,7 +33,7 @@ class UpdateAssetsTable extends Migration
     {
         //Update the assets table
         Schema::table('assets', function ($table) {
-            $table->dropColumn('classified_by', 'derived_from', 'classificationlevel', 'declassification_date', 'signature_path');
+            $table->dropColumn('classified_by', 'derived_from', 'classificationlevel', 'declassification_date', 'signatures', 'signature_path');
         });
     }
 }

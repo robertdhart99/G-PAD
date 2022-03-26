@@ -76,6 +76,7 @@ abstract class Importer
         'manager_first_name' => 'manager first name',
         'manager_last_name' => 'manager last name',
         'min_amt' => 'minimum quantity',
+        'signatures' => 'signatures',
     ];
     /**
      * Map of item fields->csv names

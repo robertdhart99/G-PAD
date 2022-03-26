@@ -88,6 +88,7 @@ class Asset extends Depreciable
         'classified_by'  => 'varchar',
         'derived_from'   => 'varchar',
         'classificationlevel'  => 'varchar',
+        'signatures' => 'array',
     ];
 
     protected $rules = [
@@ -143,6 +144,8 @@ class Asset extends Depreciable
         'last_checkout',
         'expected_checkin',
         'signature_path',
+        'witness_signature_path',
+        'signatures'
     ];
 
     use Searchable;
@@ -164,7 +167,8 @@ class Asset extends Depreciable
       'purchase_date', 
       'expected_checkin', 
       'next_audit_date', 
-      'last_audit_date'
+      'last_audit_date',
+      'signatures'
     ];
 
     /**

@@ -85,8 +85,7 @@ class RestoreFromBackup extends Command
             'storage/private_uploads/imports',
             'storage/private_uploads/assetmodels',
             'storage/private_uploads/users',
-            'storage/private_uploads/licenses',
-            'storage/private_uploads/signatures'
+            'storage/private_uploads/licenses'
         ];
         $private_files = [
             'storage/oauth-private.key',

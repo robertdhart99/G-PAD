@@ -13,6 +13,7 @@ use App\Models\Location;
 use App\Models\Setting;
 use App\Models\User;
 use App\Signature;
+use Config\debugbar;
 use Auth;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
@@ -93,6 +94,44 @@ class AssetsController extends Controller
         return $view;
     }
 
+    public function saveSigAsPNG($name, $dbField, ImageUploadRequest $request, $asset) {
+        $folderPath = public_path('uploads/');
+
+        /*$sig = $request->$name;
+        $sig = str_replace('data:image/png;base64,', '', $sig);
+        $sig = str_replace(' ', '+', $sig);
+        $imageName = str_random(10).'.'.'png';
+        $asset->$dbField = $imageName;
+        File::put($folderPath . '/' . $imageName, base64_decode($sig));*/
+
+        $image_parts = explode(";base64,", $request->$name);
+        $image_type_aux = explode("image/", $image_parts[0]);
+        if ( ! isset($image_type_aux[1])) {
+            $image_type_aux[1] = null;
+        }
+        $image_type = $image_type_aux[1];
+        if ( ! isset($image_parts[1])) {
+            $image_parts[1] = null;
+        }
+        $image_base64 = base64_decode($image_parts[1]);
+        $signature = uniqid() . '.'.$image_type;
+        $file = $folderPath . $signature;
+        $asset->$dbField = $signature;
+
+        //dd($name);
+
+        if($name == "witness") {
+            //dd($signature);
+            dd($image_parts);
+            //dd($image_type_aux);
+            //dd($image_parts[0]);
+            //dd($file);
+            //dd($name);
+        }
+
+        file_put_contents($file, $image_base64);
+    }
+
     /**
      * Validate and process new asset form data.
      *
@@ -150,6 +189,54 @@ class AssetsController extends Controller
             $asset->requestable             = request('requestable', 0);
             $asset->rtd_location_id         = request('rtd_location_id', null);
 
+            //data = $_POST['dataURL'];
+
+            $image = Image::make("/var/www/html/G-PAD/public/uploads/" . $request->get('imgBase64'));
+            dd(storage_path('app/' . $request->get('imgBase64')));
+            //$request->get('imgBase64')
+            $folderPath = public_path('uploads/');
+            
+            $image_parts = explode(";base64,", $image);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            if ( ! isset($image_type_aux[1])) {
+                $image_type_aux[1] = null;
+            }
+            $image_type = $image_type_aux[1];
+            if ( ! isset($image_parts[1])) {
+                $image_parts[1] = null;
+            }
+            $image_base64 = base64_decode($image_parts[1]);
+            $signature = uniqid() . '.'.$image_type;
+            $file = $folderPath . $signature;
+            $asset->signature_path = $signature;
+
+            //dd($name);
+
+            /*if($name == "witness") {
+                //dd($signature);
+                dd($image_parts);
+                //dd($image_type_aux);
+                //dd($image_parts[0]);
+                //dd($file);
+                //dd($name);
+            }*/
+
+            file_put_contents($file, $image_base64);
+            
+            
+            /////
+            
+            //$image = Image::make($request->get('imgBase64'));
+            //$image->save('public/bar.jpg');
+
+
+
+            //$asset->signatures              = $image;
+
+
+            $asset->signatures              = request('s', 'null');
+            //$asset->signature_path          = request('signaturePad', 'null');
+            //dd(request());
             if (!empty($settings->audit_interval)) {
                 $asset->next_audit_date         = Carbon::now()->addMonths($settings->audit_interval)->toDateString();
             }
@@ -186,14 +273,49 @@ class AssetsController extends Controller
                 }
             }
 
-            //Store signature
-            $folderPath = public_path('uploads/');
-            $image = $request->signed;
-            $image = str_replace('data:image/png;base64,', '', $image);
-            $image = str_replace(' ', '+', $image);
-            $imageName = str_random(10).'.'.'png';
-            $asset->signature_path = $imageName;
-            \File::put($folderPath . '/' . $imageName, base64_decode($image));
+            //Store signatures
+            //$folderPath = public_path('uploads/');
+
+            //$files = [];
+            
+            //$sigWit = $request->witness;
+            //$sigOff = $request->official;
+            /*if($request->official)   $files[] = $request->official;
+            if($request->witness) $files[] = $request->witness;
+            
+            foreach($files as $file) {
+                if(!empty($file)){
+                    $filename[] = $file;
+                    if(isset($filename)) {
+                        $file->move($folderPath . '/',end($filename));
+                    }
+                }
+                $asset->signature_path = $filename[0];
+                $asset->witness_signature_path = $filename[1];
+            }*/
+
+            //$this->saveSigAsPNG('witness', 'witness_signature_path', $request, $asset);
+            //$this->saveSigAsPNG('official', 'signature_path', $request, $asset);
+
+            /*$sigOff = $request->official;
+            //dd($sigOff);
+            $sigOff = str_replace('data:image/png;base64,', '', $sigOff);
+            //dd($sigOff);
+            $sigOff = str_replace(' ', '+', $sigOff);
+            //dd($sigOff);
+            $imageNameOne = str_random(10).'.'.'png';
+            //dd($imageNameOne);
+            $asset->signature_path = $imageNameOne;
+            //dd($asset);
+            \File::put($folderPath . '/' . $imageNameOne, base64_decode($sigOff));
+
+            $sigWit = $request->witness;
+            dd($sigWit);
+            $sigWit = str_replace('data:image/png;base64,', '', $sigWit);
+            $sigWit = str_replace(' ', '+', $sigWit);
+            $imageNameTwo = str_random(10).'.'.'png';
+            $asset->witness_signature_path = $imageNameTwo;
+            \File::put($folderPath . '/' . $imageNameTwo, base64_decode($sigWit));*/
             
 
             // Validate the asset before saving
@@ -220,6 +342,8 @@ class AssetsController extends Controller
             }
 
         }
+        //dd($request->witness, $request->official);
+        //dd($request->input());
 
         if ($success) {
             // Redirect to the asset listing page
@@ -315,7 +439,6 @@ class AssetsController extends Controller
         }
         $this->authorize($asset);
 
-        $var = Signature::all();
         $asset->status_id = $request->input('status_id', null);
         $asset->warranty_months = $request->input('warranty_months', null);
         $asset->purchase_cost = Helper::ParseCurrency($request->input('purchase_cost', null));
@@ -360,8 +483,6 @@ class AssetsController extends Controller
         $asset->physical     = '1';
 
         $asset = $request->handleImages($asset);
-
-        $asset->signature    = $request->input('signature_path');
 
         // Update custom fields in the database.
         // Validation for these fields is handlded through the AssetRequest form request

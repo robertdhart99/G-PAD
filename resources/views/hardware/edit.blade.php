@@ -77,8 +77,12 @@
       @endif
   </div>
 
-  @include ('partials.forms.edit.status', [ 'required' => 'true'])
-  @include ('partials.forms.edit.signature-pad-button')
+    @include ('partials.forms.edit.status', [ 'required' => 'true'])
+    @include ('partials.forms.edit.signature-pad-button', [ 'required' => 'true'])                                           
+    @include ('partials.forms.edit.witness-signature-pad', [ 'required' => 'true'])
+    
+    
+
   @if (!$item->id)
       @include ('partials.forms.checkout-selector', ['user_select' => 'true','asset_select' => 'true', 'location_select' => 'true', 'style' => 'display:none;'])
       @include ('partials.forms.edit.user-select', ['translated_name' => trans('admin/hardware/form.checkout_to'), 'fieldname' => 'assigned_user', 'style' => 'display:none;', 'required' => 'false'])
@@ -105,6 +109,7 @@
 
   @include ('partials.forms.edit.location-select', ['translated_name' => trans('admin/hardware/form.default_location'), 'fieldname' => 'rtd_location_id'])
 
+  
 
   @include ('partials.forms.edit.requestable', ['requestable_text' => trans('admin/hardware/general.requestable')])
 
