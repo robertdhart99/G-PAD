@@ -40,6 +40,8 @@
           </div>
       @endif
   </div>
+
+    @include ('partials.forms.edit.name', ['translated_name' => trans('admin/hardware/form.name')])
     @include ('partials.forms.edit.serial', ['fieldname'=> 'serials[1]', 'translated_serial' => trans('admin/hardware/form.serial')])
 
     <div class="input_fields_wrap">
@@ -50,7 +52,11 @@
     @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
     @include ('partials.forms.edit.declassification_date')
     
-    @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
+   <!-- Remove Test
+       
+   @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
+
+    -->
     
 
     @if ($message = Session::get('success'))
@@ -91,7 +97,6 @@
       @include ('partials.forms.edit.datepicker', ['translated_name' => trans('admin/hardware/form.expected_checkin'),'fieldname' => 'expected_checkin'])
   @endif
 
-  @include ('partials.forms.edit.name', ['translated_name' => trans('admin/hardware/form.name')])
   @include ('partials.forms.edit.purchase_date')
   @include ('partials.forms.edit.supplier-select', ['translated_name' => trans('general.supplier'), 'fieldname' => 'supplier_id'])
   @include ('partials.forms.edit.order_number')
