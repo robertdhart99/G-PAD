@@ -45,14 +45,13 @@
     <div class="input_fields_wrap">
     </div>
 
-	@include ('partials.forms.edit.classified_by', ['translated_name' => trans('admin/hardware/form.classified_by')])
-
-    @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
-
-
-    @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
     @include ('partials.forms.edit.classification_level', ['translated_name' => trans('admin/hardware/form.classification_level'), 'required' => 'true'])
+	@include ('partials.forms.edit.classified_by', ['translated_name' => trans('admin/hardware/form.classified_by')])
+    @include ('partials.forms.edit.derived_from', ['translated_name' => trans('admin/hardware/form.derived_from')])
     @include ('partials.forms.edit.declassification_date')
+    
+    @include ('partials.forms.edit.holder', ['translated_name' => trans('admin/hardware/form.holder'),'fieldname' => 'holder']))
+    
 
     @if ($message = Session::get('success'))
         <div class="alert alert-success  alert-dismissible">

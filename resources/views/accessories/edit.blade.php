@@ -22,7 +22,6 @@
 @include ('partials.forms.edit.quantity')
 @include ('partials.forms.edit.minimum_quantity')
 
-
 <!-- Image -->
 @if ($item->image)
     <div class="form-group {{ $errors->has('image_delete') ? 'has-error' : '' }}">
