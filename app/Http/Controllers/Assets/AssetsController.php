@@ -94,23 +94,6 @@ class AssetsController extends Controller
         return $view;
     }
 
-    public function saveSigAsPNG($name, $dbField, ImageUploadRequest $request, $asset) {
-        $folderPath = public_path('uploads/');
-            
-        //witness signature save
-        $image_parts = explode(";base64,", $request->$name);
-            
-        $image_type_aux = explode("image/", $image_parts[0]);
-        
-        $image_type = $image_type_aux[1];
-        
-        $image_base64 = base64_decode($image_parts[1]);
-        
-        $file = $folderPath . uniqid() . '.'.$image_type;
-        $asset->$dbField = $file;
-        file_put_contents($file, $image_base64);
-    }
-
     /**
      * Validate and process new asset form data.
      *
@@ -150,7 +133,6 @@ class AssetsController extends Controller
             $asset->company_id              = Company::getIdForCurrentUser($request->input('company_id'));
             $asset->classified_by           = $request->input('classified_by');
             $asset->derived_from            = $request->input('derived_from');
-            //$asset->Holder                  = $request->input('holder');
             $asset->classificationlevel     = request('classificationlevel', 0);
             $asset->declassification_date   = request('declassification_date', null);
             $asset->model_id                = $request->input('model_id');
@@ -235,52 +217,7 @@ class AssetsController extends Controller
                         }
                     }
                 }
-            }
-
-            //Store signatures
-            //$folderPath = public_path('uploads/');
-
-            //$files = [];
-            
-            //$sigWit = $request->witness;
-            //$sigOff = $request->official;
-            /*if($request->official)   $files[] = $request->official;
-            if($request->witness) $files[] = $request->witness;
-            
-            foreach($files as $file) {
-                if(!empty($file)){
-                    $filename[] = $file;
-                    if(isset($filename)) {
-                        $file->move($folderPath . '/',end($filename));
-                    }
-                }
-                $asset->signature_path = $filename[0];
-                $asset->witness_signature_path = $filename[1];
-            }*/
-
-            //$this->saveSigAsPNG('witness', 'witness_signature_path', $request, $asset);
-            //$this->saveSigAsPNG('official', 'signature_path', $request, $asset);
-
-            /*$sigOff = $request->official;
-            //dd($sigOff);
-            $sigOff = str_replace('data:image/png;base64,', '', $sigOff);
-            //dd($sigOff);
-            $sigOff = str_replace(' ', '+', $sigOff);
-            //dd($sigOff);
-            $imageNameOne = str_random(10).'.'.'png';
-            //dd($imageNameOne);
-            $asset->signature_path = $imageNameOne;
-            //dd($asset);
-            \File::put($folderPath . '/' . $imageNameOne, base64_decode($sigOff));
-
-            $sigWit = $request->witness;
-            dd($sigWit);
-            $sigWit = str_replace('data:image/png;base64,', '', $sigWit);
-            $sigWit = str_replace(' ', '+', $sigWit);
-            $imageNameTwo = str_random(10).'.'.'png';
-            $asset->witness_signature_path = $imageNameTwo;
-            \File::put($folderPath . '/' . $imageNameTwo, base64_decode($sigWit));*/
-            
+            }        
 
             // Validate the asset before saving
             if ($asset->isValid() && $asset->save()) {
@@ -301,13 +238,9 @@ class AssetsController extends Controller
                 }
 
                 $success = true;
-
-
             }
 
         }
-        //dd($request->witness, $request->official);
-        //dd($request->input());
 
         if ($success) {
             // Redirect to the asset listing page
