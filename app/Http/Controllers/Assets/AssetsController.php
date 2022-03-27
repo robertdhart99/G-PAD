@@ -368,7 +368,9 @@ class AssetsController extends Controller
         $asset->classified_by= $request->input('classified_by');
         $asset->classificationlevel = request('classificationlevel');
         $asset->derived_from = $request->input('derived_from');
-        $asset->holder = $request->input('holder');
+        $asset->CNWDI                   = request('CNWDI', null);
+        $asset->NATO                    = request('NATO', null);
+        $asset->OTHER                   = request('Other', null);
         $asset->declassification_date = $request->input('declassification_date', null);
         $serial              = $request->input('serials');
         $asset->name         = $request->input('name');
