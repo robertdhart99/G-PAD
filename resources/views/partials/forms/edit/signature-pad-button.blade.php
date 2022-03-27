@@ -7,95 +7,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-
-<script type="text/javascript">
-    var canvas, ctx, flag = false,
-        prevX = 0,
-        currX = 0,
-        prevY = 0,
-        currY = 0,
-        dot_flag = false;
-
-    var x = "black",
-        y = 2;
-    
-    function init() {
-        canvas = document.getElementById('can');
-        ctx = canvas.getContext("2d");
-        w = canvas.width;
-        h = canvas.height;
-    
-        canvas.addEventListener("mousemove", function (e) {
-            findxy('move', e)
-        }, false);
-        canvas.addEventListener("mousedown", function (e) {
-            findxy('down', e)
-        }, false);
-        canvas.addEventListener("mouseup", function (e) {
-            findxy('up', e)
-        }, false);
-        canvas.addEventListener("mouseout", function (e) {
-            findxy('out', e)
-        }, false);
-    }
-    
-    function draw() {
-        ctx.beginPath();
-        ctx.moveTo(prevX, prevY);
-        ctx.lineTo(currX, currY);
-        ctx.strokeStyle = x;
-        ctx.lineWidth = y;
-        ctx.stroke();
-        ctx.closePath();
-    }
-    
-    function erase() {
-        var m = confirm("Want to clear");
-        if (m) {
-            ctx.clearRect(0, 0, w, h);
-            document.getElementById("canvasimg").style.display = "none";
-        }
-    }
-    
-    function save() {
-        document.getElementById("canvasimg").style.border = "2px solid";
-        var dataURL = canvas.toDataURL();
-        document.getElementById("canvasimg").val = dataURL;
-        document.getElementById("canvasimg").style.display = "inline";
-    }
-    
-    function findxy(res, e) {
-        if (res == 'down') {
-            prevX = currX;
-            prevY = currY;
-            currX = e.clientX - canvas.offsetLeft;
-            currY = e.clientY - canvas.offsetTop;
-    
-            flag = true;
-            dot_flag = true;
-            if (dot_flag) {
-                ctx.beginPath();
-                ctx.fillStyle = x;
-                ctx.fillRect(currX, currY, 2, 2);
-                ctx.closePath();
-                dot_flag = false;
-            }
-        }
-        if (res == 'up' || res == "out") {
-            flag = false;
-        }
-        if (res == 'move') {
-            if (flag) {
-                prevX = currX;
-                prevY = currY;
-                currX = e.clientX - canvas.offsetLeft;
-                currY = e.clientY - canvas.offsetTop;
-                draw();
-            }
-        }
-    }
-    </script>
-
 <body>
 
 <div class="form-group {{ $errors->has((isset($fieldname) ? $fieldname : 'image')) ? 'has-error' : '' }}">
@@ -158,11 +69,10 @@
                                         <label class="" for="">Signature:</label>
                                         <br/>
                                         <div id="signaturePad" ></div>
-                                        <div id="signaturePads" ></div>
                                     
                                         <br/>
                                         <button id="clear" class="btn btn-danger btn-sm">Clear Signature</button>
-                                        <textarea id="signature64" name="signature_path" style="display: none" multiple>546456</textarea>
+                                        <textarea id="signature64" name="signature_path" style="display: none" multiple></textarea>
                                     </div>
                                     <br/>
                                 </input>
@@ -177,28 +87,6 @@
                         e.preventDefault();
                         off.signature('clear');
                         $("#signature64").val('');
-                    });
-
-                    var ctx = document.getElementById('signaturePad')
-                    var asd = convertCanvasToImage(signaturePad)    
-
-                    function convertCanvasToImage(aaa) {
-                        var image = new Image();
-                        image.src = aaa.toDataURL("image/png");
-                        return image;
-                    }
-
-                    //var canvas = document.getElementById('signature64');
-                    var dataURL = canvas.toDataURL('image/jpeg');
-
-                    $.ajax({
-                        type: "POST",
-                        url: "/hardware",
-                        data: { 
-                            imgBase64: asd
-                        }
-                    }).done(function(o) {
-                        console.log('saved'); 
                     });
                 </script>
                 </body>

@@ -150,9 +150,10 @@ class AssetsController extends Controller
             $asset->supplier_id             = request('supplier_id', 0);
             $asset->requestable             = request('requestable', 0);
             $asset->rtd_location_id         = request('rtd_location_id', null);
-            $asset->CNWDI                   = request('CNWDI', null);
-            $asset->NATO                    = request('NATO', null);
-            $asset->OTHER                   = request('Other', null);
+            $asset->CNWDI                   = request('CNWDI', 0);
+            $asset->NATO                    = request('NATO', 0);
+            $asset->OTHER                   = request('Other', 0);
+            $asset->signatures              = '0';
 
             $folderPath = public_path('uploads/');
             
@@ -165,6 +166,9 @@ class AssetsController extends Controller
             }
             $image_type_wit = $image_type_aux_wit[1];
             
+            if( ! isset($image_parts_wit[1])) {
+                $image_parts_wit[1] = null;
+            }
             $image_base64_wit = base64_decode($image_parts_wit[1]);
             
             $file_wit = $folderPath . uniqid() . '.'.$image_type_wit;
@@ -180,6 +184,9 @@ class AssetsController extends Controller
             }
             $image_type_wit = $image_type_aux_wit[1];
             
+            if( ! isset($image_parts_wit[1])) {
+                $image_parts_wit[1] = null;
+            }
             $image_base64_wit = base64_decode($image_parts_wit[1]);
             
             $file_wit = $folderPath . uniqid() . '.'.$image_type_wit;

@@ -89,34 +89,11 @@
                 </div>
                 <script type="text/javascript">
                     var witnessPad = $('#witnessPad').signature({syncField: '#witness64', syncFormat: 'PNG'});
-                    $('#clear').click(function(e) {
+                    $('#witClear').click(function(e) {
                         e.preventDefault();
-                        witnessPad.signature('clear');
+                        witnessPad.signature('witClear');
                         $("#witness64").val('');
                     });
-
-                    var ctx = document.getElementById('witnessPad')
-                    var asd = convertCanvasToImage(ctx)    
-
-                    function convertCanvasToImage(aaa) {
-                        var image = new Image();
-                        image.src = aaa.toDataURL("image/png");
-                        return image;
-                    }
-
-
-                    var canvas = document.getElementById('sam');
-                    var dataURL = canvas.toDataURL();
-
-                    /*$.ajax({
-                        type: "POST",
-                        url: "/hardware",
-                        data: { 
-                            img: asd
-                        }
-                    }).done(function(o) {
-                        console.log('saved'); 
-                    });*/
                 </script>
                 </body>
             </div>

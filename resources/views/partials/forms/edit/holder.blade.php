@@ -7,11 +7,11 @@
     <div class="input-group col-md-3">
         <div class="input-String" data-provide="string" data-string-format="EEEE"  data-autoclose="true">
             
-            <input type="checkbox" id="CNWDI" name="CNWDI" value="val1"> <!--strings-->
+            <input type="checkbox" id="CNWDI" name="CNWDI"> <!--strings-->
             <label for ="val1"> CNWDI </label><br>
-            <input type="checkbox" id="NATO" name="NATO" value="val2">
+            <input type="checkbox" id="NATO" name="NATO">
             <label for ="val2"> NATO </label><br>
-            <input type="checkbox" id="Other" name="Other" value="val3">
+            <input type="checkbox" id="Other" name="Other">
             <label for ="val3"> Other </label><br>
 
             <!--<input type="checkbox" class="form-control" placeholder="{{ trans('general.string') }}" name="holder" id="va1" value="aa">-->
