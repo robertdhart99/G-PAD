@@ -172,8 +172,6 @@ class AssetsController extends Controller
             $asset->NATO                    = request('NATO', null);
             $asset->OTHER                   = request('Other', null);
 
-            //$this->saveSigAsPNG($request->witness_signature_path, 'witness_signature_path',$request, $asset);
-
             $folderPath = public_path('uploads/');
             
             //witness signature save
@@ -203,73 +201,6 @@ class AssetsController extends Controller
             $asset->signature_path = $image_name[count($image_name) - 1];;
             file_put_contents($file_wit, $image_base64_wit);
 
-            //official signature save
-            /*$image_parts_off = explode(";base64,", $request->signature_path);
-                
-            $image_type_aux_off = explode("image/", $image_parts_off[0]);
-            
-            if( ! isset($image_type_aux_off[1])) {
-                $image_type_aux_off[1] = null;
-            }
-            $image_type_off = $image_type_aux_off[1];
-            
-            $image_base64_off = base64_decode($image_parts_off[1]);
-            
-            $file_off = $folderPath . uniqid() . '.'.$image_type_off;
-            $asset->witness_signature_path = request('signature_path', 0);
-            file_put_contents($file_off, $image_base64_off);*/
-
-
-            //data = $_POST['dataURL'];
-
-            //$image = Image::make("/var/www/html/G-PAD/public/uploads/" . $request->get('imgBase64'));
-            //dd(storage_path('app/' . $request->get('imgBase64')));
-            //$request->get('imgBase64')
-            /*$folderPath = public_path('uploads/');
-            
-            $image_parts = explode(";base64,", $image);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            if ( ! isset($image_type_aux[1])) {
-                $image_type_aux[1] = null;
-            }
-            $image_type = $image_type_aux[1];
-            if ( ! isset($image_parts[1])) {
-                $image_parts[1] = null;
-            }
-            $image_base64 = base64_decode($image_parts[1]);
-            $signature = uniqid() . '.'.$image_type;
-            $file = $folderPath . $signature;
-            $asset->signature_path = $signature;
-            
-            */
-
-            //dd($name);
-
-            /*if($name == "witness") {
-                //dd($signature);
-                dd($image_parts);
-                //dd($image_type_aux);
-                //dd($image_parts[0]);
-                //dd($file);
-                //dd($name);
-            }*/
-
-            //file_put_contents($file, $image_base64);
-            
-            
-            /////
-            
-            //$image = Image::make($request->get('imgBase64'));
-            //$image->save('public/bar.jpg');
-
-
-
-            //$asset->signatures              = $image;
-
-
-            $asset->signatures              = request('s', 'null');
-            //$asset->signature_path          = request('signaturePad', 'null');
-            //dd(request());
             if (!empty($settings->audit_interval)) {
                 $asset->next_audit_date         = Carbon::now()->addMonths($settings->audit_interval)->toDateString();
             }
