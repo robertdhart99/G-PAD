@@ -153,7 +153,6 @@ class AssetsController extends Controller
             $asset->CNWDI                   = request('CNWDI', 0);
             $asset->NATO                    = request('NATO', 0);
             $asset->OTHER                   = request('Other', 0);
-            $asset->signatures              = '0';
 
             $folderPath = public_path('uploads/');
             
