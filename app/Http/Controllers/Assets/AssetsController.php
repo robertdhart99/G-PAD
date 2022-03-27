@@ -160,7 +160,9 @@ class AssetsController extends Controller
             $image_parts_wit = explode(";base64,", $request->witness_signature_path);
                 
             $image_type_aux_wit = explode("image/", $image_parts_wit[0]);
-            
+            if( ! isset($image_type_aux_wit[1])) {
+                $image_type_aux_wit[1] = null;
+            }
             $image_type_wit = $image_type_aux_wit[1];
             
             $image_base64_wit = base64_decode($image_parts_wit[1]);
@@ -173,7 +175,9 @@ class AssetsController extends Controller
             $image_parts_wit = explode(";base64,", $request->signature_path);
                 
             $image_type_aux_wit = explode("image/", $image_parts_wit[0]);
-            
+            if( ! isset($image_type_aux_wit[1])) {
+                $image_type_aux_wit[1] = null;
+            }
             $image_type_wit = $image_type_aux_wit[1];
             
             $image_base64_wit = base64_decode($image_parts_wit[1]);
